@@ -1,0 +1,32 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.table {
+  border-bottom: 1px solid #dee2e6
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-top: 0px solid !important;
+  border-bottom: 2px solid #000000;
+}
+
+.text-right-align {
+  text-align: right;
+}
+
+.child-row td {
+  border: 0px !important;
+  padding: 0rem;
+}
+
+.parent-row-with-child td {
+  padding-bottom: 0rem;
+}

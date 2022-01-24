@@ -1,0 +1,40 @@
+<h1 id="tableLabel">Portfolio</h1>
+
+<p>This component demonstrates fetching portfolio from the server.</p>
+
+<p *ngIf="!portfolio.positions"><em>Loading...</em></p>
+
+<div class="col-12">
+  <table class='table' aria-labelledby="tableLabel" *ngIf="portfolio.positions">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th></th>
+        <th class="text-right-align">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let position of portfolio.positions">
+        <tr *ngIf="position.mandates.length > 0" class="parent-row-with-child">
+          <td>{{position.code}}</td>
+          <td>{{position.name}}</td>
+          <td></td>
+          <td class="text-right-align">{{ position.value | currency:'EUR':'symbol': '1.0-0' }}</td>
+        </tr>
+        <tr *ngIf="position.mandates.length == 0">
+          <td>{{position.code}}</td>
+          <td>{{position.name}}</td>
+          <td></td>
+          <td class="text-right-align">{{ position.value | currency:'EUR':'symbol': '1.0-0' }}</td>
+        </tr>
+        <tr class="child-row" *ngFor="let mandate of position.mandates;let i = index">
+          <td style="padding-left: 4rem;" colspan="2">{{mandate.name}}</td>
+          <td style="margin-left:0px" class="text-right-align">{{mandate.allocation | percent:'0.1' }}</td>
+          <td *ngIf="i == position.mandates.length - 1" style="padding-right: 0.75rem; padding-bottom: 0.75rem" class="text-right-align">{{mandate.value  | currency:'EUR':'symbol': '1.0-0' }}</td>
+          <td *ngIf="i < position.mandates.length - 1" style="padding-right: 0.75rem" class="text-right-align">{{mandate.value  | currency:'EUR':'symbol': '1.0-0' }}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
